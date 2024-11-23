@@ -40,7 +40,7 @@ public class VacancyResponse {
 		return vacancy_id;
 	}
 
-	public void setVacancy_id(Integer vacancy_id) {
+	public void setVacancy_id(Long vacancy_id) {
 		this.vacancy_id = vacancy_id;
 	}
 

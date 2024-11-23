@@ -101,7 +101,40 @@ public class VacancyService {
 		vacancyResponse.setStatus(ResponseCode.DELETE_VACANCY.getStatus());
 	    vacancyResponse.setMessage("Vacancy deleted successfully with ID: " + id);
 	    return vacancyResponse;
+	}
+	public VacancyResponse searchVacancyByid(Long id) {
+		
+		Optional<Vacancy> optionalVacancy=vacancyRepo.findById(id);
+		
+		if (!optionalVacancy.isPresent()) {
+	        vacancyResponse.setStatus(ResponseCode.SEARCH_VACANCY_FAILED.getStatus());
+	        vacancyResponse.setMessage("Vacancy not found with ID: " + id);
+	        return vacancyResponse;
+	    }
+		
+		Vacancy vacancy=optionalVacancy.get();
+		vacancyResponse.setStatus(ResponseCode.SEARCH_VACANCY.getStatus());
+	    vacancyResponse.setMessage("Vacancy found with ID: " + id);
+
+	    return vacancyResponse;
+		
 		
 		
 	}
+	public VacancyResponse getAllVacancies() {
+	   
+	    List<Vacancy> vacancies = vacancyRepo.findAll();
+
+	    if (vacancies.isEmpty()) {
+	        vacancyResponse.setStatus(ResponseCode.VACANCY_FAILED.getStatus());
+	        vacancyResponse.setMessage("No vacancies found.");
+	    } else {
+	        vacancyResponse.setStatus(ResponseCode.VACANCY_SUCCESS.getStatus());
+	        vacancyResponse.setMessage(vacancies.size() + " vacancies found.");
+	    }
+
+	    return vacancyResponse;
+	}
+	
+	
 }
