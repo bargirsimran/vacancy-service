@@ -3,14 +3,14 @@ package org.dnyanyog.dto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AddVacancyResponse {
+public class VacancyResponse {
 
 	private String status;
 	private String message;
 	private String errorCode;
 	private long vacancy_id;
 	
-	private AddVacancyRequest addVacancyRequest;
+	private VacancyRequest addVacancyRequest;
 	
 	public String getStatus() {
 		return status;
@@ -44,11 +44,11 @@ public class AddVacancyResponse {
 		this.vacancy_id = vacancy_id;
 	}
 
-	public AddVacancyRequest getAddVacancyRequest() {
+	public VacancyRequest getAddVacancyRequest() {
 		return addVacancyRequest;
 	}
 
-	public void setAddVacancyRequest(AddVacancyRequest addVacancyRequest) {
+	public void setAddVacancyRequest(VacancyRequest addVacancyRequest) {
 		this.addVacancyRequest = addVacancyRequest;
 	}
 	

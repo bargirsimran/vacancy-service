@@ -3,7 +3,7 @@ package org.dnyanyog.dto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AddVacancyRequest {
+public class VacancyRequest {
 	
 		private long id;
 		private String vacancyName;

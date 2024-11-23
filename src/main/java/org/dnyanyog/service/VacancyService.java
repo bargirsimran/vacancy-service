@@ -3,37 +3,30 @@ package org.dnyanyog.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.net.ResponseCache;
 import java.util.List;
 import java.util.Optional;
 
 import org.apache.coyote.Response;
 import org.dnyanyog.common.ResponseCode;
-import org.dnyanyog.dto.AddVacancyRequest;
-import org.dnyanyog.dto.AddVacancyResponse;
+import org.dnyanyog.dto.VacancyRequest;
+import org.dnyanyog.dto.VacancyResponse;
 import org.dnyanyog.entity.Vacancy;
 import org.dnyanyog.repo.VacancyServiceRepository;
 
 @Service
-public class AddVacancyService {
+public class VacancyService {
 
 	@Autowired
 	private VacancyServiceRepository vacancyRepo;
+	
+	@Autowired
+	VacancyResponse vacancyResponse;
 
-//	@Autowired
-//	private AddVacancyResponse vacancyResponse;
-//	
-
-	public AddVacancyResponse addVacancy(AddVacancyRequest request) {
-		// Service logic for adding vacancy
-
-		AddVacancyResponse vacancyResponse = new AddVacancyResponse();
-		// Optional<Vacancy> optionalVacancy = vacancyRepo.findById(request.getId());
-//    	List<Vacancy> optionalVacancy= vacancyRepo.findById(request.getId());
-//    	List<Vacancy> optionalVacancy1=vacancyRepo.findByJobId(request.getJobId());
+	public VacancyResponse addVacancy(VacancyRequest request) {
+		
 		List<Vacancy> optionalVacancy = vacancyRepo.findByJobId(request.getId());
-		// List<Vacancy>
-		// optionalVacancy=vacancyRepo.findByVacancyName(request.getVacancyName());
-
+		
 		if (!optionalVacancy.isEmpty()) {
 			vacancyResponse.setStatus(ResponseCode.VACANCY_FAILED.getStatus());
 			vacancyResponse.setMessage(ResponseCode.VACANCY_FAILED.getMessage());
@@ -41,7 +34,6 @@ public class AddVacancyService {
 		}
 
 		Vacancy vacancy = new Vacancy();
-//		vacancy.setId(request.getId());
 		vacancy.setJobId(request.getJobId());
 		vacancy.setVacancyName(request.getVacancyName());
 		vacancy.setJobTitle(request.getJobTitle());
@@ -60,4 +52,38 @@ public class AddVacancyService {
 
 		return vacancyResponse;
 	}
+	public VacancyResponse updateVacancy(Long id, VacancyRequest request) {
+	    VacancyResponse vacancyResponse = new VacancyResponse();
+
+	    
+	    Optional<Vacancy> optionalVacancy = vacancyRepo.findById(id);
+
+	    if (!optionalVacancy.isPresent()) { 
+	        vacancyResponse.setStatus(ResponseCode.VACANCY_NOT_UPDATED.getStatus());
+	        vacancyResponse.setMessage("Vacancy not found with ID: " + id);
+	        return vacancyResponse;
+	    }
+
+	    Vacancy vacancy = optionalVacancy.get();
+	    vacancy.setJobId(request.getJobId());
+	    vacancy.setVacancyName(request.getVacancyName());
+	    vacancy.setJobTitle(request.getJobTitle());
+	    vacancy.setNumberOfPosition(request.getNumberOfPosition());
+	    vacancy.setCostCenter(request.getCostCenter());
+	    vacancy.setDescription(request.getDescription());
+	    vacancy.setHiringManager(request.getHiringManager());
+	    vacancy.setStatus(request.getStatus());
+	    vacancy.setTenant(request.getTenant());
+	    vacancy.setVendorName(request.getVendorName());
+
+
+	    vacancyRepo.save(vacancy);
+
+	    
+	    vacancyResponse.setStatus(ResponseCode.VACANCY_UPDATED.getStatus());
+	    vacancyResponse.setMessage("Vacancy updated successfully");
+
+	    return vacancyResponse;
+	}
+
 }
