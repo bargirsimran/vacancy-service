@@ -86,4 +86,22 @@ public class VacancyService {
 	    return vacancyResponse;
 	}
 
+	public VacancyResponse deleteVacancy(Long id) {
+		
+		VacancyResponse vacancyResponse = new VacancyResponse();
+	    Optional<Vacancy> optionalVacancy = vacancyRepo.findById(id);
+	    
+	    if(optionalVacancy.isEmpty()) {
+	    	vacancyResponse.setStatus(ResponseCode.NOT_DELETE_VACANCY.getStatus());
+	        vacancyResponse.setMessage("Vacancy not found with ID: " + id);
+	        return vacancyResponse;
+	    }
+	 
+		vacancyRepo.deleteById(id);
+		vacancyResponse.setStatus(ResponseCode.DELETE_VACANCY.getStatus());
+	    vacancyResponse.setMessage("Vacancy deleted successfully with ID: " + id);
+	    return vacancyResponse;
+		
+		
+	}
 }
