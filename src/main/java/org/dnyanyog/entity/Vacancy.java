@@ -8,22 +8,20 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-@Table(name="vacancy")
-@JsonInclude(JsonInclude.Include.NON_NULL)
-
+@Table(name = "vacancy")
 public class Vacancy {
-	
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	@Column(nullable=false, insertable=true, updatable=false)
+	@Column
 	private long id;
-	
-	@Column(name="vacancy_name", nullable=false, insertable=true, updatable=false, length=50)
+
+	@Column
 	private String vacancyName;
-	
-	@Column(name="job_id")
+
+	@Column(name = "job_id")
 	private long jobId;
-	
+
 	public long getJobId() {
 		return jobId;
 	}
@@ -40,28 +38,28 @@ public class Vacancy {
 		this.jobTitle = jobTitle;
 	}
 
-	@Column(name="job_title")
+	@Column(name = "job_title")
 	private String jobTitle;
-	
-	@Column(name="description", nullable=false, insertable=true, updatable=false, length=1000)
+
+	@Column
 	private String description;
-	
-	@Column(name="hiring_manager")
+
+	@Column(name = "hiring_manager")
 	private String hiringManager;
-	
-	@Column(name="number_of_position")
+
+	@Column(name = "number_of_position")
 	private int numberOfPosition;
-	
-	@Column(name="cost_center", nullable = false)
+
+	@Column
 	private String costCenter;
-	
-	@Column(name="vendor_name", nullable = false)
+
+	@Column
 	private String vendorName;
-	
-	@Column(name="status", nullable = false)
+
+	@Column
 	private String status;
-	
-	@Column(name="tenant", nullable=false)
+
+	@Column
 	private String tenant;
 
 	public long getId() {
@@ -135,8 +133,5 @@ public class Vacancy {
 	public void setTenant(String tenant) {
 		this.tenant = tenant;
 	}
-
-	
-		
 
 }

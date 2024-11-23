@@ -1,9 +1,14 @@
 package org.dnyanyog.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class AddVacancyRequest {
 	
-	 	private String vacancyName;
-	    private String jobTitle;
+		private long id;
+		private String vacancyName;
+	 	private long jobId;
+		private String jobTitle;
 	    private String description;
 	    private String hiringManager;
 	    private int numberOfPosition;
@@ -11,6 +16,24 @@ public class AddVacancyRequest {
 	    private String vendorName;
 	    private String status;
 	    private String tenant;
+	    
+		public long getId() {
+			return id;
+		}
+
+		public void setId(long id) {
+			this.id = id;
+		}
+	    
+	   
+		public long getJobId() {
+			return jobId;
+		}
+
+		public void setJobId(long jobId) {
+			this.jobId = jobId;
+		}
+
 		public String getVacancyName() {
 			return vacancyName;
 		}

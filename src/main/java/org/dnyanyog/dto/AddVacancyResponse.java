@@ -1,12 +1,24 @@
 package org.dnyanyog.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class AddVacancyResponse {
 
+	private String status;
 	private String message;
 	private String errorCode;
-	private Integer vacancy_id;
+	private long vacancy_id;
 	
 	private AddVacancyRequest addVacancyRequest;
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public String getMessage() {
 		return message;
@@ -24,7 +36,7 @@ public class AddVacancyResponse {
 		this.errorCode = errorCode;
 	}
 
-	public Integer getVacancy_id() {
+	public long getVacancy_id() {
 		return vacancy_id;
 	}
 
