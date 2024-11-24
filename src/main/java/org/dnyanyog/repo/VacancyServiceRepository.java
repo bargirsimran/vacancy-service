@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Component
 public interface VacancyServiceRepository extends JpaRepository<Vacancy, Long> {
 
-	// List<Vacancy> findById(Long id);
+
 	List<Vacancy> findByJobId(Long jobId);
 
 	// List<Vacancy> findByVacancyName(String vacancyName);

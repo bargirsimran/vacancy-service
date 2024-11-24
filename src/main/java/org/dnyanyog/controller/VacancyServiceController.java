@@ -6,16 +6,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
 import org.dnyanyog.dto.VacancyRequest;
 import org.dnyanyog.dto.VacancyResponse;
-import org.dnyanyog.service.VacancyService;
+import org.dnyanyog.service.VacancyServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
 public class VacancyServiceController {
 
 	@Autowired
-	private VacancyService addVacancyService;
+	private VacancyServiceImp addVacancyService;
 
 	@PostMapping(path = "api/user/AddVacancy")
 	public VacancyResponse addVacancy(@RequestBody VacancyRequest addVacancyBody) {
@@ -39,7 +42,7 @@ public class VacancyServiceController {
     }
 
     @GetMapping(path = "api/user/GetAllVacancies")
-    public VacancyResponse getAllVacancies() {
+    public List<VacancyResponse> getAllVacancies() {
         return addVacancyService.getAllVacancies();
     }
 

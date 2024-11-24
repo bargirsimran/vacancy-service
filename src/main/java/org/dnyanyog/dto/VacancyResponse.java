@@ -1,5 +1,6 @@
 package org.dnyanyog.dto;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -7,11 +8,10 @@ public class VacancyResponse {
 
 	private String status;
 	private String message;
-	private String errorCode;
-	private long vacancy_id;
-	
-	private VacancyRequest addVacancyRequest;
-	
+
+	@Autowired
+	private VacancyData VacancyData;
+
 	public String getStatus() {
 		return status;
 	}
@@ -28,30 +28,12 @@ public class VacancyResponse {
 		this.message = message;
 	}
 
-	public String getErrorCode() {
-		return errorCode;
+	public VacancyData getVacancyData() {
+		return VacancyData;
 	}
 
-	public void setErrorCode(String errorCode) {
-		this.errorCode = errorCode;
+	public void setVacancyData(VacancyData vacancyData) {
+		VacancyData = vacancyData;
 	}
 
-	public long getVacancy_id() {
-		return vacancy_id;
-	}
-
-	public void setVacancy_id(Long vacancy_id) {
-		this.vacancy_id = vacancy_id;
-	}
-
-	public VacancyRequest getAddVacancyRequest() {
-		return addVacancyRequest;
-	}
-
-	public void setAddVacancyRequest(VacancyRequest addVacancyRequest) {
-		this.addVacancyRequest = addVacancyRequest;
-	}
-	
-	
-	
 }
