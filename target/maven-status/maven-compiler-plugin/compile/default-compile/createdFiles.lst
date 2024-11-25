@@ -1,0 +1,10 @@
+org\dnyanyog\service\VacancyService.class
+org\dnyanyog\VacancyServiceMain.class
+org\dnyanyog\controller\VacancyServiceController.class
+org\dnyanyog\dto\VacancyRequest.class
+org\dnyanyog\service\VacancyServiceImp.class
+org\dnyanyog\repo\VacancyServiceRepository.class
+org\dnyanyog\dto\VacancyData.class
+org\dnyanyog\common\ResponseCode.class
+org\dnyanyog\entity\Vacancy.class
+org\dnyanyog\dto\VacancyResponse.class
